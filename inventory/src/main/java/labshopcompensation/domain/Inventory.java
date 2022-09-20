@@ -58,6 +58,14 @@ public class Inventory {
     }
 
     public static void increaseStock(OrderCancelled orderCancelled) {
+
+        repository().findById(Long.valueOf(orderCancelled.getProductId())).ifPresent(inventory->{
+            
+            inventory.setStock(inventory.getStock() + orderCancelled.getQty()); // do something
+            repository().save(inventory);
+
+
+         });
         /** Example 1:  new item 
         Inventory inventory = new Inventory();
         repository().save(inventory);
