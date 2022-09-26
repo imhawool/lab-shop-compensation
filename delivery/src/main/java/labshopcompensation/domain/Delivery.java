@@ -64,6 +64,13 @@ public class Delivery {
     }
 
     public static void removeDelivery(OrderCancelled orderCancelled) {
+
+        repository().findByOrderId(orderCancelled.getId()).ifPresent(delivery->{
+            repository().delete(delivery);
+        });
+            
+            
+
         /** Example 1:  new item 
         Delivery delivery = new Delivery();
         repository().save(delivery);

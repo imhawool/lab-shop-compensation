@@ -34,8 +34,12 @@ public class PolicyHandler {
             "\n\n##### listener DecreaseStock : " + orderPlaced + "\n\n"
         );
 
+        
         // Sample Logic //
         Inventory.decreaseStock(event);
+
+        throw new RuntimeException();
+
     }
 
     @StreamListener(
@@ -52,7 +56,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Inventory.increaseStock(event);
-    }
+}
     // keep
 
 }
