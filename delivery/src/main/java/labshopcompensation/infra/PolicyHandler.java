@@ -37,6 +37,22 @@ public class PolicyHandler {
         // Sample Logic //
         Delivery.addToDeliveryList(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderCancelled'"
+    )
+    public void wheneverOrderCancelled_RemoveDelivery(
+        @Payload OrderCancelled orderCancelled
+    ) {
+        OrderCancelled event = orderCancelled;
+        System.out.println(
+            "\n\n##### listener RemoveDelivery : " + orderCancelled + "\n\n"
+        );
+
+        // Sample Logic //
+        Delivery.removeDelivery(event);
+    }
     // keep
 
 }

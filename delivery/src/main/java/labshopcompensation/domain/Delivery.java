@@ -62,4 +62,31 @@ public class Delivery {
         */
 
     }
+
+    public static void removeDelivery(OrderCancelled orderCancelled) {
+
+        repository().findByOrderId(orderCancelled.getId()).ifPresent(delivery->{
+            repository().delete(delivery);
+        });
+            
+            
+
+        /** Example 1:  new item 
+        Delivery delivery = new Delivery();
+        repository().save(delivery);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderCancelled.get???()).ifPresent(delivery->{
+            
+            delivery // do something
+            repository().save(delivery);
+
+
+         });
+        */
+
+    }
 }
