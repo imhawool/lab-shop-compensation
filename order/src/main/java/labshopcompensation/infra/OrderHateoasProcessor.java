@@ -12,6 +12,9 @@ public class OrderHateoasProcessor
 
     @Override
     public EntityModel<Order> process(EntityModel<Order> model) {
+        model.add(Link.of("/inventories/" + model.getContent().getProductId()).withRel("inventory"));
+        model.add(Link.of("/deliveries/search/findByOrderId?orderId=" + model.getContent().getId()).withRel("delivery"));
+
         return model;
     }
 }

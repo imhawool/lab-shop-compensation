@@ -23,6 +23,9 @@
             <Number label="Amount" v-model="value.amount" :editMode="editMode"/>
             <String label="Status" v-model="value.status" :editMode="editMode"/>
             <String label="Address" v-model="value.address" :editMode="editMode"/>
+
+            <Inventory v-model="inventory"></Inventory>
+            <Delivery v-model="delivery"></Delivery>
         </v-card-text>
 
         <v-card-actions>
@@ -99,7 +102,16 @@
                 timeout: 5000,
                 text: ''
             },
+            inventory: null,
+            delivery: null
         }),
+        async created(){
+            var result = await axios.get(this.value._links.inventory.href);
+            this.inventory = result.data;
+
+            result = await axios.get(this.value._links.delivery.href);
+            this.delivery = result.data._embedded.deliveries[0];
+        },
         computed:{
         },
         methods: {
